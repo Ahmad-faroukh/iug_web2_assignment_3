@@ -1,0 +1,75 @@
+<?php 
+$cars = array(
+"car1" => array("Manufacture" => "Toyota", "Color" => "White", "year" => 1999,"Engine_CC" => 1998), 
+"car2" => array("Manufacture" => "BMW", "Color" => "Black", "year" => 2005,"Engine_CC" => 2400), 
+"car3" => array("Manufacture" => "Ford", "Color" => "Silver", "year" => 1995,"Engine_CC" => 1395),
+"car4" => array("Manufacture" => "Chevrolet" ,"Color" => "Gray","year" => 2004,"Engine_CC" => 1400 ),
+"car5" => array("Manufacture" => "Land Rover" ,"Color" => "White","year" => 2000,"Engine_CC" => 3200 ),
+ ); 
+
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>assignment 3</title>
+</head>
+<body>
+
+	<table border="1">
+		<?php 
+		echo "<tr> <th>Manufacture</th> <th>Color</th>  <th>Year</th> <th>Engine_CC</th> </tr>";
+
+	foreach( $cars as $car )
+	{
+	    echo '<tr>';
+	    foreach( $car as $key )
+	    {
+	        echo '<td>'.$key.'</td>';
+	    }
+	    echo '</tr>';
+	}
+		 ?>
+	</table>
+
+	<br/>
+	<form action="assignment_3.php"  method="post" >
+	 Car Manufacture: <input type="text" name="Manufacture"/> 
+	<br/>
+	<input type="submit" value="Search" /> 
+	 </form> 
+	 <br/>
+	 <?php
+
+	 	$input = $_POST['Manufacture'];
+	 	foreach( $cars as $car ){
+		    foreach( $car as $key ){
+		        if (array_search($input, $car)) {
+		        	echo "$key<br/>";
+		        }
+	    }
+	}
+
+	#=================Print fName From friends array in ascending order===========
+
+	$friendsList = array (
+	"Ali" => array(  "mob" => "0590123456", "email" => "ali@gmail.com"),
+	"Ahmad" => array(  "mob" => "0591234560", "email" => "ahmad@gmail.com"),
+	"Omer" => array(  "mob" => "0592345601", "email" => "omer@gmail.com")
+	);
+	?>
+	<table border='1'><thead>
+	<tr><th>name</th><th>mobile</th><th>email</th></tr>
+	</thead><tbody>
+	<? for(reset($friendsList); $ky=key($friendsList); next($friendsList) ){
+		echo "<tr><th> $ky </th>";
+		for(reset($friendsList[$ky]); $k=key($friendsList[$ky]); next($friendsList[$ky])){
+			echo "<td>", $friendsList[$ky][$k], "</td>";				
+		}
+		echo "</tr>";
+	   } 
+	   echo "</tbody> </table>"; 
+
+	 ?>
+</body>
+</html>
